@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use SebastianBergmann\Environment\Console;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'DESC')->paginate();
+        $users = User::orderBy('id', 'DESC')->paginate(3);
         return view('home', compact('users'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        
+        $user = User::find($id);
+        $user->delete();
+        return back()->with('info', 'El usuario ha sido eliminado');
     }
 }

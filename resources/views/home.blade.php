@@ -31,6 +31,13 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->lastname}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>
+                                        <form action="{{route('home.destroy', $user->id)}}" method="post">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button class="btn btn-link">Eliminar</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
