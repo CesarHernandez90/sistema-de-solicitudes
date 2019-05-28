@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Usuarios</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,28 @@
                         </div>
                     @endif
 
-                    Tu estás conectado!
+                    {{-- <a href="" class="btn ptn-primary pull-right">Nuevo usuario</a> --}}
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th width="20px">ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Correo electrónico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{$user->id}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->lastname}}</td>
+                                    <td>{{$user->email}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table> 
+                    {!! $users->render() !!}
                 </div>
             </div>
         </div>
